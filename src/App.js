@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//components
+import Body from './Components/Body'
+import Container from './Components/Container'
+import Display from './Components/Display'
+import Numpad from './Components/Numpad'
+const App = props => {
+  const [ calculateValue, setCalculateValue ] = useState("0")
+  return(
+    <Body>
+      <Container>
+        <Display>
+          {calculateValue}
+        </Display>
+        <Numpad setValue={setCalculateValue} displayedValue={calculateValue}/>
+      </Container>
+    </Body>
+  )
 }
 
 export default App;
