@@ -19,14 +19,15 @@ const ButtonContainer = styled.button`
     }
 `
 
-const Button = ({ value, addValue, width, color, height}) => {
+const Button = ({ value, addValue, result, width, color, height}) => {
 
     return (
         <ButtonContainer
             width={width}
             color={color}
             height={height}
-            onClick={() => addValue(value)}
+            onClick={() => addValue ? addValue(value) : result() } 
+            
         >
             {value}
         </ButtonContainer>

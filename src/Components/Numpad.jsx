@@ -34,10 +34,11 @@ const NumpadContainer = styled.div`
 `
 
 const Numpad = ({ setValue, displayedValue  }) => {
-
+    
 
     const CalculateResult = () => {
-        
+        if(displayedValue==0) return
+        setValue( eval(displayedValue.replace("x","*")).toFixed(3) + "" )
     }
     const CalculateButtonValue = value => {
         if (value==="AC") {
@@ -45,7 +46,7 @@ const Numpad = ({ setValue, displayedValue  }) => {
             return
         }
         if (value==="DEL") {
-            setValue(displayedValue === "0" ? "0": displayedValue.slice(0, -1))
+            setValue(displayedValue === "0" || displayedValue.length==1 ? "0": displayedValue.slice(0, -1))
             return
         }
         if (displayedValue==="0"){
@@ -91,7 +92,7 @@ const Numpad = ({ setValue, displayedValue  }) => {
                 <Button value={"x"} width={1} height={5} addValue={a => CalculateButtonValue(a)}/>
                 <Button value={"+"} width={1} height={5} addValue={a => CalculateButtonValue(a)}/>
                 <Button value={"-"} width={1} height={5} addValue={a => CalculateButtonValue(a)}/>
-                <Button value={"="} width={1} height={5} color={"darkblue"}/>
+                <Button value={"="} width={1} height={5} color={"darkblue"} result={e => CalculateResult()}/>
 
 
             </RightPad>
